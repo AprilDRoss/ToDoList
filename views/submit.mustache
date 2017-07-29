@@ -9,20 +9,30 @@
     <form action="/" method="post">
       <div class="todoInputs">
         <label for="todo"> Enter Task Below:</label>
-        <input type="text" name="name" value=" " placeholder=" ">
+        <input type="text" name="todo" value=" " placeholder=" ">
         <button type="submit">Add todo</button>
       </div>
+    </form>
     <div class="container">
       <h1>Tasks Entered By User:</h1>
       <ul>
         {{#todos}}
-        <li>Task: {{.}}</li>
+        <form class="incomplete" action="/" method="post">
+        <input type="submit" name="incomplete" value="{{.}}">
         {{/todos}}
       </ul>
+    </form>
     </div>
 
-    <div class="completedtasks">
-      <h1>Completed Tasks:</h1>
+    <div>
+    <form class="complete">
+        <h1>Completed Tasks:</h1>
+      {{#tasksCompleted}}
+      <form class="completedtasks">
+        {{.}}
+      </form>
+      {{/tasksCompleted}}
     </div>
+
   </body>
 </html>

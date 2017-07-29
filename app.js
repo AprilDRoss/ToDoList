@@ -26,15 +26,23 @@ const todos = [
   "Trim hedges"
 ];
 
+var tasksCompleted = [];
+
 app.get("/", function (req, res) {
-  res.render('submit', { todos: todos });
+  res.render('submit', {todos: todos, tasksCompleted:tasksCompleted });
 });
 
 app.post("/", function (req, res) {
-  todos.push(req.body.name);
+  if(req.body.todo){
+  todos.push(req.body.todo);
   res.redirect('/');
+} else {
+  todos.splice(todos.indexOf(req.body.incomplete),1);
+  tasksCompleted.push(req.body.incomplete);
+  res.redirect("/");
+}
   //console.log(req.body.name);
-})
+});
 
   app.listen(3000, function (){
   console.log("App is running");
